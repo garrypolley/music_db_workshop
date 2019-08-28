@@ -13,7 +13,6 @@ defmodule MusicDB.Repo do
     # the max_id function above for an example, and check out the docs for the aggregate
     # function to see what to use instead of :max
     # https://hexdocs.pm/ecto/Ecto.Repo.html#c:aggregate/4
-
+    aggregate(table_name, :count, :id)
   end
-
 end

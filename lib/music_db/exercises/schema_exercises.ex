@@ -8,23 +8,20 @@ defmodule MusicDB.Exercises.SchemaExercises do
   }
 
   def convert_schema_less_query do
-    # Convert the query below to use the Artist schema.
-    query =
-      from(a in "artists",
-        where: a.birth_date >= ^~D[1990-11-15],
-        select: [a.name]
-      )
-
-    Repo.all(query)
+    Artist
+    |> select([a], [:name])
+    |> where([a], a.birth_date >= ^~D[1990-11-15])
+    |> Repo.all()
   end
 
   def insert_a_track! do
     # Use Repo.insert! to insert a %Track{} with whatever title and index you like.
-
+    %Track{title: "Garry Track", index: 10}
+    |> Repo.insert!()
   end
 
   def delete_an_album!(album) do
-    # Use Repo.delete to delete the album
-
+    album
+    |> Repo.delete!()
   end
 end

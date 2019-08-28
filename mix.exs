@@ -37,7 +37,8 @@ defmodule MusicDB.MixProject do
     [
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.test_setup": ["ecto.create --quiet", "ecto.migrate"],
-      "ecto.reset": ["ecto.drop", "ecto.setup"]
+      "ecto.reset": ["ecto.drop", "ecto.setup"],
+      test: ["test --max-failures 1"]
     ]
   end
 

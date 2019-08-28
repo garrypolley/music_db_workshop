@@ -1,6 +1,5 @@
 defmodule QueryExercisesTest do
   use MusicDB.DBCase
-  import Ecto.Query
 
   alias MusicDB.{
     Exercises.QueryExercises,
@@ -9,7 +8,6 @@ defmodule QueryExercisesTest do
     Album
   }
 
-  @tag :skip
   test "fetch the artist with the name of 'Taylor Swift'" do
     Repo.insert!(%Artist{name: "Taylor Swift"})
 
@@ -17,13 +15,11 @@ defmodule QueryExercisesTest do
     assert artist.name == "Taylor Swift"
   end
 
-  @tag :skip
   test "return the raw sql for a query that selects all artist birth dates" do
     sql = QueryExercises.inspect_sql()
     assert sql == {"SELECT a0.\"birth_date\" FROM \"artists\" AS a0", []}
   end
 
-  @tag :skip
   test "find an artist by name" do
     Repo.insert!(%Artist{name: "Taylor Swift"})
     Repo.insert!(%Artist{name: "Bill Evans"})
@@ -32,7 +28,6 @@ defmodule QueryExercisesTest do
     assert artist.name == "Bill Evans"
   end
 
-  @tag :skip
   test "fetch tracks with names that include 'Theme'" do
     Repo.insert!(%Track{title: "Theme Song", index: 1})
     Repo.insert!(%Track{title: "Main Theme", index: 2})
@@ -46,7 +41,6 @@ defmodule QueryExercisesTest do
     end)
   end
 
-  @tag :skip
   test "search albums by their tracks" do
     album_1 = Repo.insert!(%Album{title: "Supernova"})
     album_2 = Repo.insert!(%Album{title: "Skygate"})
@@ -63,7 +57,6 @@ defmodule QueryExercisesTest do
     assert Enum.count(albums) == 2
   end
 
-  @tag :skip
   test "finds track by title and updates that title to 'Rolling in the Deep'" do
     Repo.insert!(%Track{title: "Flamenco Sketches", index: 1})
 
@@ -72,7 +65,6 @@ defmodule QueryExercisesTest do
     assert Repo.get_by(Track, title: "Rolling in the Deep")
   end
 
-  @tag :skip
   test "finds track by title and deletes it" do
     Repo.insert!(%Track{title: "Flamenco Sketches", index: 1})
     assert Repo.get_by(Track, title: "Flamenco Sketches")
@@ -81,7 +73,6 @@ defmodule QueryExercisesTest do
     refute Repo.get_by(Track, title: "Flamenco Sketches")
   end
 
-  @tag :skip
   test "orders artists by name desc" do
     artists =
       for n <- 1..9 do
@@ -97,7 +88,6 @@ defmodule QueryExercisesTest do
     assert Enum.reverse(artist_names) == ordered_artist_names
   end
 
-  @tag :skip
   test "finding an album's duration using group_by" do
     album = Repo.insert!(%Album{title: "Heartbeat"})
 

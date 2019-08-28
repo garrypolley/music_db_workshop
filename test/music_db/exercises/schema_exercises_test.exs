@@ -9,7 +9,6 @@ defmodule SchemaExercisesTest do
     Track
   }
 
-  @tag :skip
   test "convert schema-less query" do
     artists =
       for n <- 1..5 do
@@ -22,7 +21,6 @@ defmodule SchemaExercisesTest do
     assert artist.name == List.last(artists).name
   end
 
-  @tag :skip
   test "insert a track record" do
     assert Repo.aggregate(Track, :count, :id) == 0
 
@@ -31,7 +29,6 @@ defmodule SchemaExercisesTest do
     assert Repo.aggregate(Track, :count, :id) == 1
   end
 
-  @tag :skip
   test "deletes album" do
     album = Repo.insert!(%Album{title: "Wildfire"})
     assert Repo.get_by(Album, title: "Wildfire")

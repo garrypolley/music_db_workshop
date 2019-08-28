@@ -1,8 +1,6 @@
 defmodule MusicDB.DBCase do
   use ExUnit.CaseTemplate
 
-  alias MusicDB.Repo
-
   using do
     quote do
       alias MusicDB.Repo
